@@ -33,3 +33,6 @@ RUN git clone https://github.com/Cloudef/wlc . && git submodule update --init --
 WORKDIR /usr/src/way-cooler
 COPY . .
 RUN cargo install
+RUN mkdir ~/.config
+COPY config/init.lua ~/.config/way-cooler/init.lua
+ENV XDG_RUNTIME_DIR ~/.config
