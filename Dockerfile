@@ -1,6 +1,6 @@
 FROM rust:1.22.1
-RUN apt-get update && \
-  apt-get install -y --no-install-recommends \
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
     cmake \
     git \
     libcairo2-dev \
@@ -25,7 +25,8 @@ RUN apt-get update && \
     libxcb1-dev \
     libxkbcommon-dev \
     pkg-config \
-    wayland-protocols
+    wayland-protocols \
+ && rm -rf /var/lib/apt/lists/*
 WORKDIR /usr/src/wlc
 RUN git clone https://github.com/Cloudef/wlc . && git submodule update --init --recursive && \
   cmake -DCMAKE_BUILD_TYPE=Upstream -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib . && make && make install
