@@ -30,4 +30,6 @@ RUN apt-get update \
 WORKDIR /usr/src/wlc
 RUN git clone https://github.com/Cloudef/wlc . && git submodule update --init --recursive && \
   cmake -DCMAKE_BUILD_TYPE=Upstream -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib . && make && make install
-RUN cargo install --git https://github.com/way-cooler/way-cooler way-cooler
+WORKDIR /usr/src/way-cooler
+COPY . .
+RUN cargo install
