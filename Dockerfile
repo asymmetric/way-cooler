@@ -27,6 +27,6 @@ RUN apt-get update && \
     pkg-config \
     wayland-protocols
 WORKDIR /usr/src/wlc
-RUN git clone https://github.com/Cloudef/wlc . && git submodule update --init --recursive && mkdir target && cd target && cmake -DCMAKE_BUILD_TYPE=Upstream .. && make && make install
-WORKDIR /usr/src/way-cooler
+RUN git clone https://github.com/Cloudef/wlc . && git submodule update --init --recursive && \
+  cmake -DCMAKE_BUILD_TYPE=Upstream -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib . && make && make install
 RUN cargo install --git https://github.com/way-cooler/way-cooler way-cooler
